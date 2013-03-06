@@ -43,8 +43,3 @@ def main(url = STEAM_SURVEY):
 if __name__ == '__main__':
     main()
 
-data = {
-    '2012-12': {'windows': 94.8, 'macos': 3.72, 'linux': 0.8},
-    '2013-01': {'windows': 94.56, 'macos': 3.56, 'linux': 1.12},
-    '2013-02': {'windows': 94.11, 'macos': 3.07, 'linux': 2.02},
-}
