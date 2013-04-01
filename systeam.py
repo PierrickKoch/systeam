@@ -11,13 +11,13 @@ def load(url):
 def select(doc):
     return doc.cssselect('div.stats_col_mid.data_row')
 
-def filterp(elements, prefix):
-    return [elt for elt in elements if elt.text_content().startswith(prefix)]
+def filterc(elements, subs):
+    return [elt for elt in elements if subs in elt.text_content()]
 
-def process(elements, prefixes):
+def process(elements, substrs):
     total = 0.0
-    for prefix in prefixes:
-        for elt in filterp(elements, prefix):
+    for subs in substrs:
+        for elt in filterc(elements, subs):
             # get the text of the next element, the percentage value
             percent = elt.itersiblings().next()
             # remove the '%' and parse as float
@@ -35,11 +35,15 @@ def main(url = STEAM_SURVEY):
     doc = load(url)
     elements = select(doc)
     result = {}
-    result['linux'] = process(elements, ["Ubuntu", "Linux"])
+    result['linux'] = process(elements, ["Ubuntu", "Linux", "Gentoo", "Fedora", "openSUSE"])
     result['windows'] = process(elements, ["Windows"])
     result['macos'] = process(elements, ["MacOS"])
     print({str_last_month(): result})
 
 if __name__ == '__main__':
-    main()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1].startswith("http"):
+        main(sys.argv[1])
+    else:
+        main()
 

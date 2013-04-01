@@ -54,16 +54,18 @@ var palette = new Rickshaw.Color.Palette();
 // from .py
 //
 data = {
-    '2012-11': {'windows': 96.15, 'macos': 3.26, 'linux': 0.0},
-    '2012-12': {'windows': 94.80, 'macos': 3.72, 'linux': 0.8},
-    '2013-01': {'windows': 94.56, 'macos': 3.56, 'linux': 1.12},
-    '2013-02': {'windows': 94.11, 'macos': 3.07, 'linux': 2.02},
+    '2012-11-01': {'windows': 96.15, 'macos': 3.26, 'linux': 0.0},
+    '2012-12-01': {'windows': 94.80, 'macos': 3.72, 'linux': 0.8},
+    '2013-01-01': {'windows': 94.56, 'macos': 3.56, 'linux': 1.12},
+    '2013-02-01': {'windows': 94.11, 'macos': 3.07, 'linux': 2.02},
+    '2013-02-22': {'windows': 94.20, 'macos': 3.27, 'linux': 2.46},
+    '2013-03-01': {'windows': 94.58, 'macos': 3.67, 'linux': 1.68},
 }
 //
 //
 
 var plot = {}
-var format = d3.time.format("%Y-%m");
+var format = d3.time.format("%Y-%m-%d");
 for (keytime in data) {
     for (keyos in data[keytime]) {
         if (!(keyos in plot)) {
