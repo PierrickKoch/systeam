@@ -25,24 +25,21 @@ def process(elements, substrs):
     # result
     return total
 
-def str_last_month():
-    from datetime import timedelta, datetime
-    dt1 = datetime.today().replace(day=1) # first day of this month
-    dt2 = dt1 - timedelta(days=1) # subtract one day = previous month
-    return dt2.strftime("%Y-%m")
+def date():
+    from datetime import datetime
+    return  datetime.today().strftime("%Y-%m-%d")
 
 def main(url = STEAM_SURVEY):
-    doc = load(url)
-    elements = select(doc)
+    elements = select( load(url) )
     result = {}
     result['linux'] = process(elements, ["Ubuntu", "Linux", "Gentoo", "Fedora", "openSUSE"])
     result['windows'] = process(elements, ["Windows"])
     result['macos'] = process(elements, ["MacOS"])
-    print({str_last_month(): result})
+    print({date(): result})
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) > 1 and sys.argv[1].startswith("http"):
+    if len(sys.argv) > 1:
         main(sys.argv[1])
     else:
         main()
