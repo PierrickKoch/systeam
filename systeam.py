@@ -2,6 +2,8 @@
 
 # http://web.archive.org/web/*/store.steampowered.com/hwsurvey
 # http://webcache.googleusercontent.com/search?q=cache:store.steampowered.com/hwsurvey
+# for page prior to January 2014, use the previous version of this script:
+# https://github.com/pierriko/systeam/blob/jan14/systeam.py
 STEAM_SURVEY = "http://store.steampowered.com/hwsurvey"
 
 import sys
