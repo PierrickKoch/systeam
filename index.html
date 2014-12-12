@@ -88,18 +88,16 @@ data = {
 //
 //
 
-var plot = {}
+var plot = { windows: [], macos: [], linux: [], unknown: [] };
 var format = d3.time.format("%Y-%m-%d");
 for (keytime in data) {
+    var unknown = 100.0
+    var time = format.parse(keytime).getTime() / 1000;
     for (keyos in data[keytime]) {
-        if (!(keyos in plot)) {
-            plot[keyos] = [];
-        }
-        plot[keyos].push({
-            'x': format.parse(keytime).getTime()/1000,
-            'y': data[keytime][keyos],
-        });
+        unknown -= data[keytime][keyos];
+        plot[keyos].push({'x': time, 'y': data[keytime][keyos]});
     }
+    plot.unknown.push({'x': time, 'y': unknown});
 }
 var series = [];
 for (os in plot) {
